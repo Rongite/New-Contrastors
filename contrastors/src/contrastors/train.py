@@ -59,11 +59,14 @@ def main(config, dtype):
 if __name__ == "__main__":
     args = parse_args()
 
-    if args.deepspeed:
-        deepspeed.init_distributed()
-    else:
-        dist.init_process_group()
-        torch.cuda.set_device(dist.get_rank())
+    dist.init_process_group()
+    torch.cuda.set_device(dist.get_rank())
+
+    # if args.deepspeed:
+    #     deepspeed.init_distributed()
+    # else:
+    #     dist.init_process_group()
+    #     torch.cuda.set_device(dist.get_rank())
 
     config = read_config(args.config)
     if args.deepspeed:

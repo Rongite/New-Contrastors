@@ -141,7 +141,9 @@ class BaseTrainer(metaclass=ABCMeta):
                 for k, v in params.items():
                     hyperparams[f"{key}_{k}"] = v
 
-            tracker = wandb.init(project=project_name, entity=entity, name=run_name, config=hyperparams)
+            # tracker = wandb.init(project=project_name, entity=entity, name=run_name, config=hyperparams)
+            wandb.login(key="2ac4cfec136bc5fd8279b2d29ced7cc0bfa5df87")
+            tracker = wandb.init()
 
             if self.num_processes > 1:
                 tracker = DistributedWandbTracker(tracker)

@@ -14,7 +14,7 @@ train_args:
   cooldown_steps: null
   checkpoint: null
 
-  wandb: true
+  wandb: false
   wandb_project_name: "bert"
   wandb_entity: "gpt4all"
 
@@ -46,7 +46,7 @@ model_args:
 mlm_data_args:
   tokenized_dataset: "nomic-ai/nomic-bert-2048-pretraining-data"
   workers: 4
-  batch_size: 4096
+  batch_size: 128
   seed: 42
   shuffle: true
   mlm_prob: 0.30
