@@ -39,6 +39,7 @@ def parse_args():
     parser.add_argument("--config", type=str, default="config.yaml")
     parser.add_argument("--dtype", type=str, default="float32")
     parser.add_argument("--local_rank", type=int, default=-1)
+    parser.add_argument("--deepspeed", type=bool, default=True)
 
     parser = deepspeed.add_config_arguments(parser)
 
@@ -59,14 +60,11 @@ def main(config, dtype):
 if __name__ == "__main__":
     args = parse_args()
 
-    dist.init_process_group()
-    torch.cuda.set_device(dist.get_rank())
-
-    # if args.deepspeed:
-    #     deepspeed.init_distributed()
-    # else:
-    #     dist.init_process_group()
-    #     torch.cuda.set_device(dist.get_rank())
+    if args.deepspeed:
+        deepspeed.init_distributed()
+    else:
+        dist.init_process_group()
+        torch.cuda.set_device(dist.get_rank())
 
     config = read_config(args.config)
     if args.deepspeed:
