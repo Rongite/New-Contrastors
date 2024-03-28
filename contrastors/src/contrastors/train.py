@@ -33,15 +33,12 @@ DTYPE_MAPPING = {
     "bf16": torch.bfloat16,
 }
 
-
 def parse_args():
     parser = ArgumentParser()
     parser.add_argument("--config", type=str, default="config.yaml")
     parser.add_argument("--dtype", type=str, default="float32")
     parser.add_argument("--local_rank", type=int, default=-1)
     parser.add_argument("--deepspeed", type=bool, default=True)
-
-    parser = deepspeed.add_config_arguments(parser)
 
     return parser.parse_args()
 
