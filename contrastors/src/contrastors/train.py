@@ -39,6 +39,7 @@ def parse_args():
     parser.add_argument("--dtype", type=str, default="float32")
     parser.add_argument("--local_rank", type=int, default=-1)
     parser.add_argument("--deepspeed", type=bool, default=True)
+    parser.add_argument("--deepspeed_config", type=str, default="")
 
     return parser.parse_args()
 
