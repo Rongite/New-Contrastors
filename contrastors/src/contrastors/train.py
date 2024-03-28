@@ -41,8 +41,6 @@ def parse_args():
     parser.add_argument("--local_rank", type=int, default=-1)
     parser.add_argument("--deepspeed", type=bool, default=True)
 
-    parser = deepspeed.add_config_arguments(parser)
-
     return parser.parse_args()
 
 
